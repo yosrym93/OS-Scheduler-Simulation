@@ -1,6 +1,6 @@
 import click
 from utils import read_processes, plot_graph
-from schedulers import FCFSScheduler, RoundRobinScheduler
+from schedulers import FCFSScheduler, RoundRobinScheduler, HPFScheduler
 
 
 @click.command()
@@ -31,7 +31,7 @@ def create_scheduler(scheduler, quantum, context_switch):
     elif scheduler == 'srtn':
         return None  # TODO return valid scheduler
     elif scheduler == 'hpf':
-        return None  # TODO return valid scheduler
+        return HPFScheduler()
 
 
 def schedule(processes, scheduler):
