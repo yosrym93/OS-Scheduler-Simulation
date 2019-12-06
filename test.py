@@ -1,5 +1,5 @@
 from utils.process_reader import read_processes
-from process.process import Process
+from process import Process
 import heapq
 
 # Free experimentation area

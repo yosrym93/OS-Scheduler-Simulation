@@ -1,5 +1,5 @@
 class Process:
-    def __init__(self, process, comparator_key):
+    def __init__(self, process, comparator_key='arrival_time'):
         self.number = process['number']
         self.priority = process['priority']
         self.running_time = process['running_time']
