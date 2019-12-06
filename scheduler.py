@@ -1,13 +1,13 @@
 import click
 from utils import read_processes, plot_graph
-from schedulers import FCFSScheduler, RoundRobinScheduler, HPFScheduler
+from schedulers import FCFSScheduler, RoundRobinScheduler, HPFScheduler, SRTNScheduler
 
 
 @click.command()
-@click.option('-f', '--file', default='processes.txt',
+@click.option('-f', '--file', default='hpfprocesses.txt',
               help='Input file with processes data.')
 @click.option('-s', '--scheduler', type=click.Choice(['rr', 'fcfs', 'srtn', 'hpf']),
-              help='Scheduler type.', required=True)
+              help='Scheduler type.', required=True,default = 'srtn')
 @click.option('-q', '--quantum', default=2, type=click.types.INT,
               help='Quantum length for Round Robin.')
 @click.option('-cs', '--context_switch', default=1, type=click.types.INT,
@@ -29,7 +29,7 @@ def create_scheduler(scheduler, quantum, context_switch):
     elif scheduler == 'rr':
         return RoundRobinScheduler(quantum, context_switch)
     elif scheduler == 'srtn':
-        return None  # TODO return valid scheduler
+        return SRTNScheduler()
     elif scheduler == 'hpf':
         return HPFScheduler()
 
