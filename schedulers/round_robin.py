@@ -19,7 +19,7 @@ class RoundRobinScheduler(Scheduler):
             self.running_queue.rotate()
         if self.current_context_switch_state > 0:
             self.current_context_switch_state -= 1
-            return True, -1
+            return True, None
         is_running, process_number = super().run_scheduled_process()
         self.current_quantum_state -= 1
         return is_running, process_number
