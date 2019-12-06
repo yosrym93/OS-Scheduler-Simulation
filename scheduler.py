@@ -7,7 +7,7 @@ from schedulers import FCFSScheduler, RoundRobinScheduler, HPFScheduler, SRTNSch
 @click.option('-f', '--file', default='hpfprocesses.txt',
               help='Input file with processes data.')
 @click.option('-s', '--scheduler', type=click.Choice(['rr', 'fcfs', 'srtn', 'hpf']),
-              help='Scheduler type.', required=True,default = 'srtn')
+              help='Scheduler type.', required=True)
 @click.option('-q', '--quantum', default=2, type=click.types.INT,
               help='Quantum length for Round Robin.')
 @click.option('-cs', '--context_switch', default=1, type=click.types.INT,
