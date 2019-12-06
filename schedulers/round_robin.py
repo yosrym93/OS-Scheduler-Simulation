@@ -10,7 +10,6 @@ class RoundRobinScheduler(Scheduler):
         self.current_quantum_state = quantum_length
         self.context_switch_length = context_switch_length
         self.current_context_switch_state = 0
-        self.disable_context_switch = False
 
     def run_scheduled_process(self):
         if self.current_quantum_state == 0:
