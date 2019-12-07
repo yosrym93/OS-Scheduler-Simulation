@@ -20,7 +20,8 @@ class RoundRobinScheduler(Scheduler):
             self.current_context_switch_state -= 1
             return True, None
         is_running, process_number = super().run_scheduled_process()
-        self.current_quantum_state -= 1
+        if len(self.running_queue) > 0:
+            self.current_quantum_state -= 1
         return is_running, process_number
 
     def add_process(self, process):
@@ -31,4 +32,6 @@ class RoundRobinScheduler(Scheduler):
 
     def finalize_active_process(self):
         self.running_queue.pop()
-        self.current_quantum_state = self.quantum_length + 1  # Add 1 as it will be decremented
+        self.current_quantum_state = self.quantum_length
+        if len(self.running_queue) > 0:
+            self.current_quantum_state += 1  # Add 1 as it will be decremented
