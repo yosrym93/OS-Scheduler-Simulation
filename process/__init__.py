@@ -18,8 +18,8 @@ class Process:
             return False
 
     def __repr__(self):
-        return "Process number: {0}, Arrival Time: {1}, Burst Time: {2}, Priority: {3}".format(
-            self.number, self.arrival_time, self.running_time, self.priority
+        return "Process number: {0}, Arrival Time: {1}, Burst Time: {2}, Priority: {3}, Preempt Status: {4}".format(
+            self.number, self.arrival_time, self.running_time, self.priority, self.preempt_status
         )
 
     def set_preempt_status(self, status):
