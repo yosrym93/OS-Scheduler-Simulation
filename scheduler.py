@@ -1,5 +1,5 @@
 import click
-from utils import read_processes, plot_graph
+from utils import read_processes, plot_graph, write_stats
 from schedulers import FCFSScheduler, RoundRobinScheduler, HPFScheduler, SRTNScheduler
 
 
@@ -49,7 +49,7 @@ def schedule(processes, scheduler):
             next_process = None if len(processes) == 0 else processes[-1]
 
         # Run the scheduled process
-        is_running, current_process = scheduler.run_scheduled_process()
+        is_running, current_process = scheduler.run_scheduled_process(time)
         # Check for termination case (no more arriving processes & scheduler idle)
         if not is_running and next_process is None:
             process_switches.append(time)
@@ -65,6 +65,8 @@ def schedule(processes, scheduler):
             process_switches.append(time)
         time += 1
 
+    statistics = scheduler.return_stats()
+    write_stats(statistics)
     plot_graph(times=range(time),
                scheduled_processes=scheduled_processes,
                context_switches=context_switches,

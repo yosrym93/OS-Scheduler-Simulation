@@ -1,0 +1,5 @@
+Process Number 	 Waiting time	 Turn around	 Weighted turn around
+1  			12  		17  		3.40
+2  			15  		22  		3.14
+Average Turn Around	19.50
+Average Weighted Turn Around	3.27

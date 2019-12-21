@@ -7,6 +7,7 @@ class FCFSScheduler(Scheduler):
     process_comparator_key = 'arrival_time'
 
     def __init__(self):
+        super().__init__()
         self.running_queue = []
 
     def add_process(self, process):
