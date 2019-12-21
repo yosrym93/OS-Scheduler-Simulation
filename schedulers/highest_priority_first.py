@@ -7,16 +7,17 @@ class HPFScheduler(Scheduler):
     process_comparator_key = 'priority'
 
     def __init__(self):
+        super().__init__()
         self.running_queue=[]
 
     def get_active_process(self):
         return None if len(self.running_queue) == 0 else self.running_queue[0]
 
-    def run_scheduled_process(self):
+    def run_scheduled_process(self, current_time):
         process = self.get_active_process()
         if process is not None:
             process.set_preempt_status(False)
-        is_running, process_number = super().run_scheduled_process()
+        is_running, process_number = super().run_scheduled_process(current_time=current_time)
         return is_running, process_number
 
     def finalize_active_process(self):

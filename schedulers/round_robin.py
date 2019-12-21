@@ -5,13 +5,14 @@ from collections import deque
 
 class RoundRobinScheduler(Scheduler):
     def __init__(self, quantum_length, context_switch_length):
+        super().__init__()
         self.running_queue = deque([])
         self.quantum_length = quantum_length
         self.current_quantum_state = quantum_length
         self.context_switch_length = context_switch_length
         self.current_context_switch_state = 0
 
-    def run_scheduled_process(self):
+    def run_scheduled_process(self, current_time):
         if self.current_quantum_state == 0:
             self.current_quantum_state = self.quantum_length
             self.current_context_switch_state = self.context_switch_length
@@ -19,7 +20,7 @@ class RoundRobinScheduler(Scheduler):
         if self.current_context_switch_state > 0:
             self.current_context_switch_state -= 1
             return True, None
-        is_running, process_number = super().run_scheduled_process()
+        is_running, process_number = super().run_scheduled_process(current_time=current_time)
         if len(self.running_queue) > 0:
             self.current_quantum_state -= 1
         return is_running, process_number

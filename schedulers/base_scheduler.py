@@ -2,7 +2,10 @@ from abc import ABC, abstractmethod
 
 
 class Scheduler(ABC):
-    def run_scheduled_process(self, decrement_comparator=False):
+    def __init__(self):
+        self.statistics = []
+
+    def run_scheduled_process(self, current_time, decrement_comparator=False):
         # Run the scheduled process for 1 time step
         process = self.get_active_process()
         if process is None:
@@ -12,6 +15,8 @@ class Scheduler(ABC):
             process.comparator -= 1
         if process.running_time == 0:
             self.finalize_active_process()
+            process.finalize_stats(current_time)
+            self.statistics.append(process)
         return True, process.number
 
     @abstractmethod
@@ -25,3 +30,7 @@ class Scheduler(ABC):
     @abstractmethod
     def finalize_active_process(self):
         pass
+
+    def return_stats(self):
+        return self.statistics
+

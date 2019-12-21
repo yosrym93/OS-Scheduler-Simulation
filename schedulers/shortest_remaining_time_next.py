@@ -7,10 +7,12 @@ class SRTNScheduler(Scheduler):
     process_comparator_key = 'running_time'
 
     def __init__(self):
+        super().__init__()
         self.running_queue = []
 
-    def run_scheduled_process(self):
-        is_running, process_number = super().run_scheduled_process(decrement_comparator=True)
+    def run_scheduled_process(self,current_time):
+        is_running, process_number = super().run_scheduled_process(current_time=current_time,
+                                                                   decrement_comparator=True)
         return is_running, process_number
 
     def get_active_process(self):
