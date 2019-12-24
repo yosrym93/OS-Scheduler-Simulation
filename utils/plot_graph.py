@@ -5,6 +5,7 @@ def plot_graph(times, scheduled_processes, context_switches, xticks, processes_c
     ax = plt.subplot(111)
     ax.bar(times, scheduled_processes, width=1, color='b', align='edge')
     ax.bar(context_switches, 0.5, width=1, color='r', align='edge')
+    ax.yaxis.grid()
     ax.set_xticks(ticks=xticks)
     ax.set_yticks(ticks=range(processes_count + 1))
     ax.set_xlabel('Time')
