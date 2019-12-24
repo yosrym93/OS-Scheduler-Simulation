@@ -7,6 +7,7 @@ from collections import deque
 # Context switch ONLY when a running process is replaced with another, if a process finished no context switch
 # If a process arrives at the same time another one finishes, insert the new one in the queue first
 # If a process finished a quantum with no other processes existing, give it a full new quantum
+# When switching out of a process, it is re-inserted in the queue before context switch
 class RoundRobinScheduler(Scheduler):
     def __init__(self, quantum_length, context_switch_length):
         super().__init__()
@@ -19,8 +20,9 @@ class RoundRobinScheduler(Scheduler):
     def run_scheduled_process(self, current_time):
         if self.current_quantum_state == 0:
             self.current_quantum_state = self.quantum_length
-            self.current_context_switch_state = self.context_switch_length
-            self.running_queue.rotate()
+            if len(self.running_queue) > 1:
+                self.current_context_switch_state = self.context_switch_length
+                self.running_queue.rotate()
         if self.current_context_switch_state > 0:
             self.current_context_switch_state -= 1
             return True, None

@@ -8,9 +8,9 @@ from schedulers import FCFSScheduler, RoundRobinScheduler, HPFScheduler, SRTNSch
               help='Input file with processes data.')
 @click.option('-s', '--scheduler', type=click.Choice(['rr', 'fcfs', 'srtn', 'hpf']),
               help='Scheduler type.', required=True, default='rr')
-@click.option('-q', '--quantum', default=2, type=click.types.INT,
+@click.option('-q', '--quantum', default=4, type=click.types.INT,
               help='Quantum length for Round Robin.')
-@click.option('-cs', '--context_switch', default=1, type=click.types.INT,
+@click.option('-cs', '--context_switch', default=2, type=click.types.INT,
               help='Context Switch Length for Round Robin')
 def cli(file, scheduler, quantum, context_switch):
     try:

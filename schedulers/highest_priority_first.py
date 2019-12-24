@@ -3,6 +3,8 @@ from schedulers import Scheduler
 import heapq
 
 
+# Assumptions
+# Lower priority value -> higher priority
 class HPFScheduler(Scheduler):
     process_comparator_key = 'priority'
 
