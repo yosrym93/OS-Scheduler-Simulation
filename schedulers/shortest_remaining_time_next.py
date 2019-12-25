@@ -3,6 +3,8 @@ import _heapq
 from process import Process
 
 
+# Assumptions
+# No context switch.
 class SRTNScheduler(Scheduler):
     process_comparator_key = 'running_time'
 
