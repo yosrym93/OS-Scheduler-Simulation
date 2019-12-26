@@ -5,6 +5,8 @@ from process import Process
 
 # Assumptions
 # No context switch.
+# the process with least running time remaining is the first to be executed
+# if there is a tie the process with the least number is executed
 class SRTNScheduler(Scheduler):
     process_comparator_key = 'running_time'
 

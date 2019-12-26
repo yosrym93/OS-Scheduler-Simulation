@@ -5,6 +5,8 @@ import heapq
 
 # Assumptions
 # Lower priority value -> higher priority
+# if a process is entered at time step 't' with higher priority and another process
+# was in the queue before time step 't' with lower priority, the process entered is the one who si going to be scheduled
 class HPFScheduler(Scheduler):
     process_comparator_key = 'priority'
 
