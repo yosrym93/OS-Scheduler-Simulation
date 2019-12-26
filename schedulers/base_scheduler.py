@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 
 
+# Assumption
+# Any conflict is solved by the process number -> smaller wins
 class Scheduler(ABC):
     def __init__(self):
         self.statistics = []
